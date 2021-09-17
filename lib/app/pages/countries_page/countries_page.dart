@@ -1,5 +1,5 @@
-import 'package:covid_data/app/pages/widgets/custom_app_bar_widget.dart';
 import 'package:flutter/material.dart';
+import 'widgets/custom_app_bar_widget.dart';
 
 class CountriesPage extends StatefulWidget {
   const CountriesPage({Key? key}) : super(key: key);
@@ -14,11 +14,11 @@ class _CountriesPageState extends State<CountriesPage> {
     return const Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(),
-      body: ListView.separated(
-        separatorBuilder: (ctx, index) {
-          return Padding(padding: EdgeInsets.only(left: 15,),),
-        };
-      ),
+      // body: ListView.separated(
+      //   separatorBuilder: (ctx, index) {
+      //     return Padding(padding: EdgeInsets.only(left: 15,),),
+      //   };
+      // ),
     );
   }
 }

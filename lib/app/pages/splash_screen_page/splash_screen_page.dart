@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -25,9 +26,13 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           ],
         ),
       ),
-      child: Image.asset(
-        'assets/images/covid.png',
-        scale: 1.2,
+      child: Bounce(
+        delay: const Duration(seconds: 2),
+        infinite: true,
+        child: Image.asset(
+          'assets/images/covid.png',
+          scale: 1.2,
+        ),
       ),
     );
   }
