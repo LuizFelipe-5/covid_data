@@ -12,7 +12,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       toolbarHeight: 125,
       title: Column(
         children: [
-          const Text('Covid Data'),
+          const Text(
+            'Covid Data',
+            style: TextStyle(color: black),
+          ),
           const SizedBox(
             height: 10,
           ),

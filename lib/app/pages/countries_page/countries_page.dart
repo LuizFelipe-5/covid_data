@@ -1,8 +1,13 @@
+import 'package:covid_data/app/models/country.dart';
 import 'package:flutter/material.dart';
 import 'widgets/custom_app_bar_widget.dart';
 
 class CountriesPage extends StatefulWidget {
-  const CountriesPage({Key? key}) : super(key: key);
+  const CountriesPage({
+    required this.countries,
+  });
+
+  final List<Country> countries;
 
   @override
   _CountriesPageState createState() => _CountriesPageState();
@@ -14,11 +19,12 @@ class _CountriesPageState extends State<CountriesPage> {
     return const Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(),
-      // body: ListView.separated(
-      //   separatorBuilder: (ctx, index) {
-      //     return Padding(padding: EdgeInsets.only(left: 15,),),
-      //   };
-      // ),
+      body: ListView.builder(
+        itemCount: widget.countries.length,
+        itemBuilder: (ctx, index) {
+          return Text(widget.countries[index].country);
+        },
+      ),
     );
   }
 }
