@@ -1,3 +1,4 @@
+import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -21,12 +22,12 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             decoration: InputDecoration(
               prefix: const Icon(
                 Icons.search,
-                color: Color(0xFF4f4f4f),
+                color: gray,
               ),
               hintText: 'Encontre um país',
               hintStyle: const TextStyle(
                 fontSize: 16,
-                color: Color(0xFF4f4f4f),
+                color: gray,
               ),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(25),

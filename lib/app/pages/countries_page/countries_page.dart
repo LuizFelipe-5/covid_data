@@ -14,6 +14,11 @@ class _CountriesPageState extends State<CountriesPage> {
     return const Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(),
+      body: ListView.separated(
+        separatorBuilder: (ctx, index) {
+          return Padding(padding: EdgeInsets.only(left: 15,),),
+        };
+      ),
     );
   }
 }
