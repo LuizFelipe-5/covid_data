@@ -22,7 +22,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           colors: [
             primaryColor,
             primaryColor0,
-            secondaryColor,
+            Colors.lightBlueAccent,
           ],
         ),
       ),
