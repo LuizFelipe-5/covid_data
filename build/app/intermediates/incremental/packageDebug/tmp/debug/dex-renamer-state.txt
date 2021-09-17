@@ -1,0 +1,4 @@
+#Thu Sep 16 19:54:40 BRT 2021
+base.0=/home/luizfelipe/projects/flutter/covid_data/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
