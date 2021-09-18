@@ -12,10 +12,4 @@ class CountryRepository {
 
     final countriesList = response.data as List;
   }
-
-  Future<dynamic> getCountryInfo(String url) async {
-    final response = await _dio.get(url);
-    final String name = response.data['country'];
-    final String imageUrl = response.data['countryInfo']['flag'];
-  }
 }

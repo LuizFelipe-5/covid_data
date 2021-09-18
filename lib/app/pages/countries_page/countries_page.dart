@@ -19,12 +19,12 @@ class _CountriesPageState extends State<CountriesPage> {
     return const Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(),
-      body: ListView.builder(
-        itemCount: widget.countries.length,
-        itemBuilder: (ctx, index) {
-          return Text(widget.countries[index].country);
-        },
-      ),
+      // body: ListView.builder(
+      //   itemCount: widget.countries.length,
+      //   itemBuilder: (ctx, index) {
+      //     return Text(widget.countries[index].country);
+      //   },
+      // ),
     );
   }
 }

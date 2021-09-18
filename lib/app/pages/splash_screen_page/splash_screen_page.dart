@@ -1,4 +1,6 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:covid_data/app/pages/continents_page/continents_page.dart';
+import 'package:covid_data/app/repositories/continent_repository.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -11,6 +13,25 @@ class SplashScreenPage extends StatefulWidget {
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
   @override
+  void initState() {
+    super.initState();
+
+    getContinents();
+  }
+
+  Future<void> getContinents() async {
+    final repository = ContinentRepository();
+    final continents = await repository.getContinents();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => ContinentsPage(
+          continents: continents,
+        ),
+      ),
+    );
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: double.infinity,
@@ -22,7 +43,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
           colors: [
             primaryColor,
             primaryColor0,
-            Colors.lightBlueAccent,
+            secondaryColor,
           ],
         ),
       ),

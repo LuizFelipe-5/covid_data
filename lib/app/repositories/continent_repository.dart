@@ -9,16 +9,8 @@ class ContinentRepository {
   }
 
   Future<List<Continent>> getContinents() async {
-    var continents = <Continent>[];
-    try {
-      final response = await _dio.get('continents?yesterday=true');
-
-      if (response.statusCode == 200) {
-        continents = response.data;
-      }
-      return continents;
-    } catch (e) {
-      return [];
-    }
+    final response = await _dio.get('continents');
+    final list = response.data as List;
+    return list.map((json) => Continent.fromJson(json)).toList();
   }
 }
