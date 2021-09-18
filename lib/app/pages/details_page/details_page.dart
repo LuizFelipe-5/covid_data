@@ -40,7 +40,7 @@ class _DetailsPageState extends State<DetailsPage> {
           appBar: AppBar(
             backgroundColor: secondaryColor,
             title: Text(
-              'País',
+              currentCountry.country,
               style: TextStyle(
                 color: Colors.white,
               ),
@@ -60,7 +60,12 @@ class _DetailsPageState extends State<DetailsPage> {
                       padding: EdgeInsets.only(left: 16, right: 16, top: 150),
                       child: Column(
                         children: [
-                          Text(currentCountry.country),
+                          Text(
+                            currentCountry.country,
+                            style: TextStyle(
+                              fontSize: 20,
+                            ),
+                          ),
                           const SizedBox(
                             height: 40,
                           ),
@@ -86,11 +91,14 @@ class _DetailsPageState extends State<DetailsPage> {
                                       const SizedBox(
                                         height: 8,
                                       ),
-                                      Text((currentCountry.active *
-                                                  100 /
-                                                  currentCountry.cases)
-                                              .toStringAsFixed(0) +
-                                          '%'),
+                                      Text(
+                                        (currentCountry.active *
+                                                    100 /
+                                                    currentCountry.cases)
+                                                .toStringAsFixed(0) +
+                                            '%',
+                                        style: TextStyle(color: Colors.green),
+                                      ),
                                     ],
                                   ),
                                   Column(
@@ -99,11 +107,14 @@ class _DetailsPageState extends State<DetailsPage> {
                                       const SizedBox(
                                         height: 8,
                                       ),
-                                      Text((currentCountry.recovered *
-                                                  100 /
-                                                  currentCountry.cases)
-                                              .toStringAsFixed(0) +
-                                          '%'),
+                                      Text(
+                                        (currentCountry.recovered *
+                                                    100 /
+                                                    currentCountry.cases)
+                                                .toStringAsFixed(0) +
+                                            '%',
+                                        style: TextStyle(color: Colors.blue),
+                                      ),
                                     ],
                                   ),
                                   Column(
@@ -112,11 +123,14 @@ class _DetailsPageState extends State<DetailsPage> {
                                       const SizedBox(
                                         height: 8,
                                       ),
-                                      Text((currentCountry.deaths *
-                                                  100 /
-                                                  currentCountry.cases)
-                                              .toStringAsFixed(0) +
-                                          '%'),
+                                      Text(
+                                        (currentCountry.deaths *
+                                                    100 /
+                                                    currentCountry.cases)
+                                                .toStringAsFixed(0) +
+                                            '%',
+                                        style: TextStyle(color: Colors.red),
+                                      ),
                                     ],
                                   )
                                 ],

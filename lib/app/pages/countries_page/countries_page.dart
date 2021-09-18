@@ -1,6 +1,7 @@
 import 'package:covid_data/app/controllers/country_controller.dart';
 import 'package:covid_data/app/models/country.dart';
 import 'package:covid_data/app/pages/details_page/details_page.dart';
+import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'widgets/custom_app_bar_widget.dart';
@@ -34,33 +35,36 @@ class _CountriesPageState extends State<CountriesPage> {
       appBar: CustomAppBar(
         controller: controller,
       ),
-      body: Padding(
-        padding: EdgeInsets.symmetric(vertical: 20.5, horizontal: 14.5),
-        child: Observer(
-          builder: (BuildContext context) {
-            //controller.countryStore.countrySelected;
-            return ListView.builder(
-              itemCount: controller.countryStore.countriesFiltered.length,
-              itemBuilder: (context, index) {
-                final country =
-                    controller.countryStore.countriesFiltered[index];
-                return Card(
-                  child: ListTile(
-                    leading: CircleAvatar(
-                      backgroundColor: Colors.white,
-                      child: Image.network(country.countryInfo.flag),
+      body: Container(
+        color: primaryColor0,
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 20.5, horizontal: 14.5),
+          child: Observer(
+            builder: (BuildContext context) {
+              //controller.countryStore.countrySelected;
+              return ListView.builder(
+                itemCount: controller.countryStore.countriesFiltered.length,
+                itemBuilder: (context, index) {
+                  final country =
+                      controller.countryStore.countriesFiltered[index];
+                  return Card(
+                    child: ListTile(
+                      leading: CircleAvatar(
+                        backgroundColor: Colors.white,
+                        child: Image.network(country.countryInfo.flag),
+                      ),
+                      title: Text(country.country),
+                      trailing: Icon(Icons.arrow_forward),
+                      onTap: () {
+                        controller.selectedCountry(
+                            country: country, context: context, index: index);
+                      },
                     ),
-                    title: Text(country.country),
-                    trailing: Icon(Icons.arrow_forward),
-                    onTap: () {
-                      controller.selectedCountry(
-                          country: country, context: context, index: index);
-                    },
-                  ),
-                );
-              },
-            );
-          },
+                  );
+                },
+              );
+            },
+          ),
         ),
       ),
     );

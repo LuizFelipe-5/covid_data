@@ -17,7 +17,12 @@ class _ContinentsPageState extends State<ContinentsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Covid Data'),
+        title: Text(
+          'Covid Data',
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         centerTitle: true,
         backgroundColor: secondaryColor,
       ),

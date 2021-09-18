@@ -17,7 +17,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           const Text(
             'Covid Data',
-            style: TextStyle(color: black),
+            style: TextStyle(color: Colors.white),
           ),
           const SizedBox(
             height: 10,
