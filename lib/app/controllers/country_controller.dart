@@ -1,5 +1,7 @@
 import 'package:covid_data/app/models/country.dart';
+import 'package:covid_data/app/pages/details_page/details_page.dart';
 import 'package:covid_data/app/shared/stores/country_store.dart';
+import 'package:flutter/material.dart';
 
 class CountryController {
   CountryStore countryStore = CountryStore();
@@ -17,5 +19,22 @@ class CountryController {
     } else {
       countryStore.setListCountryFiltered(countryStore.countries);
     }
+  }
+
+  void selectedCountry(
+      {required Country country,
+      required BuildContext context,
+      required int index}) {
+    //controller.countryStore.setCountrySelected(country);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => DetailsPage(
+          countries: countryStore.countriesFiltered,
+          indexCurrentCountry: index,
+          store: countryStore,
+        ),
+      ),
+    );
   }
 }
