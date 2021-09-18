@@ -24,10 +24,52 @@ mixin _$CountryStore on _CountryStoreBase, Store {
     });
   }
 
+  final _$countriesFilteredAtom =
+      Atom(name: '_CountryStoreBase.countriesFiltered');
+
+  @override
+  ObservableList<Country> get countriesFiltered {
+    _$countriesFilteredAtom.reportRead();
+    return super.countriesFiltered;
+  }
+
+  @override
+  set countriesFiltered(ObservableList<Country> value) {
+    _$countriesFilteredAtom.reportWrite(value, super.countriesFiltered, () {
+      super.countriesFiltered = value;
+    });
+  }
+
+  final _$_CountryStoreBaseActionController =
+      ActionController(name: '_CountryStoreBase');
+
+  @override
+  void setListCountry(List<Country> value) {
+    final _$actionInfo = _$_CountryStoreBaseActionController.startAction(
+        name: '_CountryStoreBase.setListCountry');
+    try {
+      return super.setListCountry(value);
+    } finally {
+      _$_CountryStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setListCountryFiltered(List<Country> value) {
+    final _$actionInfo = _$_CountryStoreBaseActionController.startAction(
+        name: '_CountryStoreBase.setListCountryFiltered');
+    try {
+      return super.setListCountryFiltered(value);
+    } finally {
+      _$_CountryStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
   @override
   String toString() {
     return '''
-countries: ${countries}
+countries: ${countries},
+countriesFiltered: ${countriesFiltered}
     ''';
   }
 }

@@ -1,13 +1,16 @@
+import 'package:covid_data/app/controllers/country_controller.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
-  const CustomAppBar({Key? key}) : super(key: key);
+  const CustomAppBar({Key? key, required this.controller}) : super(key: key);
+
+  final CountryController controller;
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.white,
+      backgroundColor: secondaryColor,
       centerTitle: true,
       toolbarHeight: 125,
       title: Column(
@@ -20,7 +23,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             height: 10,
           ),
           TextField(
-            onChanged: (ctx) {},
+            onChanged: controller.getCountriesFiltered,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
               prefix: const Icon(

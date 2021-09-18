@@ -38,12 +38,12 @@ class _ContinentsPageState extends State<ContinentsPage> {
                       '${widget.continents[index].countries.length} países'),
                   trailing: Icon(Icons.arrow_forward),
                   onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => CountriesPage(
-                            countries: widget.continents[index].countries),
-                      ),
-                    );
+                    // Navigator.of(context).push(
+                    //   MaterialPageRoute(
+                    //     builder: (context) => CountriesPage(
+                    //         countries: widget.continents[index].countries),
+                    //   ),
+                    // );
                   },
                 ),
               );
