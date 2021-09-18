@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class ContinentsPage extends StatefulWidget {
   const ContinentsPage({Key? key, required this.continents}) : super(key: key);
-
+  static final String routeName = '/ContinentsPage';
   final List<Continent> continents;
 
   @override
@@ -40,7 +40,8 @@ class _ContinentsPageState extends State<ContinentsPage> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => Scaffold(),
+                        builder: (context) => CountriesPage(
+                            countries: widget.continents[index].countries),
                       ),
                     );
                   },

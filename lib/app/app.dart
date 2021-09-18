@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
             .copyWith(secondary: secondaryColor),
       ),
-      home: SplashScreenPage(),
+      home: CountriesPage(),
     );
   }
 }

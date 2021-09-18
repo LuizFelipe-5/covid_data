@@ -1,11 +1,15 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:covid_data/app/pages/continents_page/continents_page.dart';
+import 'package:covid_data/app/pages/countries_page/countries_page.dart';
 import 'package:covid_data/app/repositories/continent_repository.dart';
+import 'package:covid_data/app/repositories/country_repository.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({Key? key}) : super(key: key);
+
+  static final String routeName = '/SplashScreenPage';
 
   @override
   _SplashScreenPageState createState() => _SplashScreenPageState();
@@ -16,7 +20,8 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
   void initState() {
     super.initState();
 
-    getContinents();
+    //getContinents();
+    getCountries();
   }
 
   Future<void> getContinents() async {
@@ -27,6 +32,16 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
         builder: (context) => ContinentsPage(
           continents: continents,
         ),
+      ),
+    );
+  }
+
+  Future<void> getCountries() async {
+    final repository = CountryRepository();
+    final countries = await repository.getCountries();
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => CountriesPage(countries: countries),
       ),
     );
   }
