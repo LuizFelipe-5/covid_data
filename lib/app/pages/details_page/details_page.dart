@@ -41,132 +41,144 @@ class _DetailsPageState extends State<DetailsPage> {
             backgroundColor: secondaryColor,
             title: Text(
               country,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
               ),
             ),
           ),
-          body: Container(
-            color: primaryColor0,
-            child: Stack(
-              alignment: Alignment.topCenter,
-              children: [
-                Positioned(
-                  top: 73,
-                  left: 16,
-                  right: 16,
-                  child: Card(
-                    child: Padding(
-                      padding: EdgeInsets.only(left: 16, right: 16, top: 150),
-                      child: Column(
-                        children: [
-                          Text(
-                            country,
-                            style: TextStyle(
-                              fontSize: 20,
+          body: !controller.detailsStore.isLoading
+              ? Container(
+                  color: primaryColor0,
+                  child: Stack(
+                    alignment: Alignment.topCenter,
+                    children: [
+                      Positioned(
+                        top: 73,
+                        left: 16,
+                        right: 16,
+                        child: Card(
+                          child: Padding(
+                            padding: const EdgeInsets.only(
+                                left: 16, right: 16, top: 150),
+                            child: Column(
+                              children: [
+                                Text(
+                                  country,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 40,
+                                ),
+                                Column(
+                                  children: [
+                                    Text('Total de casos'),
+                                    const SizedBox(
+                                      height: 5,
+                                    ),
+                                    Text(
+                                      controller.detailsStore.country.cases
+                                          .toString(),
+                                    ),
+                                    const SizedBox(
+                                      height: 37,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Column(
+                                          children: [
+                                            Text('Ativos'),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Text(
+                                              (controller.detailsStore.country
+                                                              .active *
+                                                          100 /
+                                                          controller
+                                                              .detailsStore
+                                                              .country
+                                                              .cases)
+                                                      .toStringAsFixed(0) +
+                                                  '%',
+                                              style: TextStyle(
+                                                  color: Colors.green),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            Text('Curados'),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Text(
+                                              (controller.detailsStore.country
+                                                              .recovered *
+                                                          100 /
+                                                          controller
+                                                              .detailsStore
+                                                              .country
+                                                              .cases)
+                                                      .toStringAsFixed(0) +
+                                                  '%',
+                                              style:
+                                                  TextStyle(color: Colors.blue),
+                                            ),
+                                          ],
+                                        ),
+                                        Column(
+                                          children: [
+                                            Text('Óbitos'),
+                                            const SizedBox(
+                                              height: 8,
+                                            ),
+                                            Text(
+                                              (controller.detailsStore.country
+                                                              .deaths *
+                                                          100 /
+                                                          controller
+                                                              .detailsStore
+                                                              .country
+                                                              .cases)
+                                                      .toStringAsFixed(0) +
+                                                  '%',
+                                              style:
+                                                  TextStyle(color: Colors.red),
+                                            ),
+                                          ],
+                                        )
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 58.0,
+                                ),
+                              ],
                             ),
                           ),
-                          const SizedBox(
-                            height: 40,
-                          ),
-                          Column(
-                            children: [
-                              Text('Total de casos'),
-                              const SizedBox(
-                                height: 5,
-                              ),
-                              Text(
-                                controller.detailsStore.country.cases
-                                    .toString(),
-                              ),
-                              const SizedBox(
-                                height: 37,
-                              ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Column(
-                                    children: [
-                                      Text('Ativos'),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        (controller.detailsStore.country
-                                                        .active *
-                                                    100 /
-                                                    controller.detailsStore
-                                                        .country.cases)
-                                                .toStringAsFixed(0) +
-                                            '%',
-                                        style: TextStyle(color: Colors.green),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Text('Curados'),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        (controller.detailsStore.country
-                                                        .recovered *
-                                                    100 /
-                                                    controller.detailsStore
-                                                        .country.cases)
-                                                .toStringAsFixed(0) +
-                                            '%',
-                                        style: TextStyle(color: Colors.blue),
-                                      ),
-                                    ],
-                                  ),
-                                  Column(
-                                    children: [
-                                      Text('Óbitos'),
-                                      const SizedBox(
-                                        height: 8,
-                                      ),
-                                      Text(
-                                        (controller.detailsStore.country
-                                                        .deaths *
-                                                    100 /
-                                                    controller.detailsStore
-                                                        .country.cases)
-                                                .toStringAsFixed(0) +
-                                            '%',
-                                        style: TextStyle(color: Colors.red),
-                                      ),
-                                    ],
-                                  )
-                                ],
-                              ),
-                            ],
-                          ),
-                          const SizedBox(
-                            height: 58.0,
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
+                      Positioned(
+                        top: 30,
+                        child: Container(
+                          height: 180,
+                          child: Center(
+                            child: ClipRRect(
+                                borderRadius: BorderRadius.circular(4),
+                                child: Image.network(controller
+                                    .detailsStore.country.countryInfo.flag)),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-                Positioned(
-                  top: 30,
-                  child: Container(
-                    height: 180,
-                    child: Center(
-                      child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4),
-                          child: Image.network(controller
-                              .detailsStore.country.countryInfo.flag)),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+                )
+              : Center(child: CircularProgressIndicator()),
         );
       },
     );

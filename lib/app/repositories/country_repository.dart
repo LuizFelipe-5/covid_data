@@ -24,7 +24,6 @@ class CountryRepository {
     final response = await _dio.get('countries/${countryName.toLowerCase()}');
     final country = response.data;
     var countryData = Country.fromJson(country);
-    //country.map((json) => Country.fromJson(json));
     return countryData;
   }
 }

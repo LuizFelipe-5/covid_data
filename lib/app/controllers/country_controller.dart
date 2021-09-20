@@ -24,7 +24,6 @@ class CountryController {
 
   void selectedCountry(
       {required String country, required BuildContext context}) {
-    //controller.countryStore.setCountrySelected(country);
     countryStore.setCountrySelected(country);
     Navigator.push(
       context,

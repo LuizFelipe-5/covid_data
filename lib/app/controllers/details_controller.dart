@@ -7,12 +7,10 @@ class DetailsController {
   DetailsStore detailsStore = DetailsStore();
 
   Future<void> getCountry(String countryName) async {
+    detailsStore.changeState(true);
     final repository = CountryRepository();
     final country = await repository.getCountry(countryName);
     detailsStore.setCountry(country);
-  }
-
-  void selectedCountry({required Country country}) {
-    detailsStore.setCountry(country);
+    detailsStore.changeState(false);
   }
 }
