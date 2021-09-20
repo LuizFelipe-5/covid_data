@@ -1,6 +1,4 @@
 import 'package:covid_data/app/controllers/country_controller.dart';
-import 'package:covid_data/app/models/country.dart';
-import 'package:covid_data/app/pages/details_page/details_page.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';

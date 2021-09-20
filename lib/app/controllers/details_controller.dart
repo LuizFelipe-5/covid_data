@@ -1,7 +1,5 @@
-import 'package:covid_data/app/models/country.dart';
 import 'package:covid_data/app/repositories/country_repository.dart';
 import 'package:covid_data/app/shared/stores/details_store.dart';
-import 'package:flutter/material.dart';
 
 class DetailsController {
   DetailsStore detailsStore = DetailsStore();

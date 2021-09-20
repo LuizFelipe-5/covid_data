@@ -1,4 +1,3 @@
-import 'package:covid_data/app/pages/countries_page/countries_page.dart';
 import 'package:covid_data/app/pages/splash_screen_page/splash_screen_page.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';

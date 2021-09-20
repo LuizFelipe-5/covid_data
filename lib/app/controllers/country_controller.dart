@@ -1,6 +1,4 @@
-import 'package:covid_data/app/models/country.dart';
 import 'package:covid_data/app/pages/details_page/details_page.dart';
-import 'package:covid_data/app/repositories/country_repository.dart';
 import 'package:covid_data/app/shared/stores/country_store.dart';
 import 'package:flutter/material.dart';
 

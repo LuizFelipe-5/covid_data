@@ -1,7 +1,4 @@
-import 'package:covid_data/app/controllers/country_controller.dart';
 import 'package:covid_data/app/controllers/details_controller.dart';
-import 'package:covid_data/app/models/country.dart';
-import 'package:covid_data/app/repositories/country_repository.dart';
 import 'package:covid_data/app/shared/stores/country_store.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -167,11 +164,12 @@ class _DetailsPageState extends State<DetailsPage> {
                         top: 30,
                         child: Container(
                           height: 180,
-                          child: Center(
-                            child: ClipRRect(
-                                borderRadius: BorderRadius.circular(4),
-                                child: Image.network(controller
-                                    .detailsStore.country.countryInfo.flag)),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(4),
+                            child: Image.network(
+                              controller.detailsStore.country.countryInfo.flag,
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),

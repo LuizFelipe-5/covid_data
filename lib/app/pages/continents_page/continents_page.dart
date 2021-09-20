@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 class ContinentsPage extends StatefulWidget {
   const ContinentsPage({Key? key, required this.continents}) : super(key: key);
-  static final String routeName = '/ContinentsPage';
   final List<Continent> continents;
 
   @override
