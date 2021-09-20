@@ -1,46 +1,46 @@
+import 'package:covid_data/app/controllers/country_controller.dart';
+import 'package:covid_data/app/controllers/details_controller.dart';
 import 'package:covid_data/app/models/country.dart';
+import 'package:covid_data/app/repositories/country_repository.dart';
 import 'package:covid_data/app/shared/stores/country_store.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class DetailsPage extends StatefulWidget {
-  final List<Country> countries;
+  final String country;
   final CountryStore store;
-  final int indexCurrentCountry;
-  const DetailsPage(
-      {Key? key,
-      required this.countries,
-      required this.store,
-      required this.indexCurrentCountry})
-      : super(key: key);
+
+  const DetailsPage({
+    Key? key,
+    required this.country,
+    required this.store,
+  }) : super(key: key);
 
   @override
   _DetailsPageState createState() => _DetailsPageState();
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  List<Country> get countries => widget.countries;
-  int get indexCurrentCountry => widget.indexCurrentCountry;
-
-  var _pageViewController = PageController();
+  DetailsController controller = DetailsController();
+  String get country => widget.country;
 
   @override
   void initState() {
     super.initState();
+
+    controller.getCountry(country);
   }
 
   @override
   Widget build(BuildContext context) {
-    final currentCountry = widget.countries[indexCurrentCountry];
-
     return Observer(
       builder: (BuildContext context) {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: secondaryColor,
             title: Text(
-              currentCountry.country,
+              country,
               style: TextStyle(
                 color: Colors.white,
               ),
@@ -61,7 +61,7 @@ class _DetailsPageState extends State<DetailsPage> {
                       child: Column(
                         children: [
                           Text(
-                            currentCountry.country,
+                            country,
                             style: TextStyle(
                               fontSize: 20,
                             ),
@@ -76,7 +76,8 @@ class _DetailsPageState extends State<DetailsPage> {
                                 height: 5,
                               ),
                               Text(
-                                currentCountry.cases.toString(),
+                                controller.detailsStore.country.cases
+                                    .toString(),
                               ),
                               const SizedBox(
                                 height: 37,
@@ -92,9 +93,11 @@ class _DetailsPageState extends State<DetailsPage> {
                                         height: 8,
                                       ),
                                       Text(
-                                        (currentCountry.active *
+                                        (controller.detailsStore.country
+                                                        .active *
                                                     100 /
-                                                    currentCountry.cases)
+                                                    controller.detailsStore
+                                                        .country.cases)
                                                 .toStringAsFixed(0) +
                                             '%',
                                         style: TextStyle(color: Colors.green),
@@ -108,9 +111,11 @@ class _DetailsPageState extends State<DetailsPage> {
                                         height: 8,
                                       ),
                                       Text(
-                                        (currentCountry.recovered *
+                                        (controller.detailsStore.country
+                                                        .recovered *
                                                     100 /
-                                                    currentCountry.cases)
+                                                    controller.detailsStore
+                                                        .country.cases)
                                                 .toStringAsFixed(0) +
                                             '%',
                                         style: TextStyle(color: Colors.blue),
@@ -124,9 +129,11 @@ class _DetailsPageState extends State<DetailsPage> {
                                         height: 8,
                                       ),
                                       Text(
-                                        (currentCountry.deaths *
+                                        (controller.detailsStore.country
+                                                        .deaths *
                                                     100 /
-                                                    currentCountry.cases)
+                                                    controller.detailsStore
+                                                        .country.cases)
                                                 .toStringAsFixed(0) +
                                             '%',
                                         style: TextStyle(color: Colors.red),
@@ -152,8 +159,8 @@ class _DetailsPageState extends State<DetailsPage> {
                     child: Center(
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(4),
-                          child:
-                              Image.network(currentCountry.countryInfo.flag)),
+                          child: Image.network(controller
+                              .detailsStore.country.countryInfo.flag)),
                     ),
                   ),
                 ),

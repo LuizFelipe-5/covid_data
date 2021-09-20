@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:covid_data/app/controllers/splash_screen_controller.dart';
 import 'package:covid_data/app/pages/continents_page/continents_page.dart';
 import 'package:covid_data/app/pages/countries_page/countries_page.dart';
 import 'package:covid_data/app/repositories/continent_repository.dart';
@@ -16,35 +17,25 @@ class SplashScreenPage extends StatefulWidget {
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
+  SplashScreenController controller = SplashScreenController();
+
   @override
   void initState() {
     super.initState();
 
-    //getContinents();
-    getCountries();
+    controller.getContinents(context);
+    // getCountries();
   }
 
-  Future<void> getContinents() async {
-    final repository = ContinentRepository();
-    final continents = await repository.getContinents();
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => ContinentsPage(
-          continents: continents,
-        ),
-      ),
-    );
-  }
-
-  Future<void> getCountries() async {
-    final repository = CountryRepository();
-    final countries = await repository.getCountries();
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (context) => CountriesPage(countries: countries),
-      ),
-    );
-  }
+  // Future<void> getCountries() async {
+  //   final repository = CountryRepository();
+  //   final countries = await repository.getCountries();
+  //   Navigator.of(context).pushReplacement(
+  //     MaterialPageRoute(
+  //       builder: (context) => CountriesPage(countries: countries),
+  //     ),
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

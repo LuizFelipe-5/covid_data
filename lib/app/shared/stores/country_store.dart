@@ -6,28 +6,27 @@ class CountryStore = _CountryStoreBase with _$CountryStore;
 
 abstract class _CountryStoreBase with Store {
   @observable
-  ObservableList<Country> countries = <Country>[].asObservable();
+  bool isLoading = false;
 
   @observable
-  ObservableList<Country> countriesFiltered = <Country>[].asObservable();
+  ObservableList<String> countries = <String>[].asObservable();
 
-  // @observable
-  // Country countrySelected = Country(
-  //     country: '',
-  //     countryInfo: ,
-  //     cases: 0,
-  //     deaths: 0,
-  //     recovered: 0,
-  //     active: 0,
-  //     continent: '');
+  @observable
+  ObservableList<String> countriesFiltered = <String>[].asObservable();
+
+  @observable
+  String countrySelected = '';
 
   @action
-  void setListCountry(List<Country> value) => countries = value.asObservable();
+  void changeState(bool isLoading) => this.isLoading = isLoading;
 
   @action
-  void setListCountryFiltered(List<Country> value) =>
+  void setListCountry(List<String> value) => countries = value.asObservable();
+
+  @action
+  void setListCountryFiltered(List<String> value) =>
       countriesFiltered = value.asObservable();
 
-  // @action
-  // void setCountrySelected(Country country) => countrySelected = country;
+  @action
+  void setCountrySelected(String country) => countrySelected = country;
 }

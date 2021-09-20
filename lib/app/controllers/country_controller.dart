@@ -1,5 +1,6 @@
 import 'package:covid_data/app/models/country.dart';
 import 'package:covid_data/app/pages/details_page/details_page.dart';
+import 'package:covid_data/app/repositories/country_repository.dart';
 import 'package:covid_data/app/shared/stores/country_store.dart';
 import 'package:flutter/material.dart';
 
@@ -8,9 +9,9 @@ class CountryController {
 
   void getCountriesFiltered(String _text) {
     if (_text.isNotEmpty) {
-      final countriesFiltered = <Country>[];
+      final countriesFiltered = <String>[];
       for (final country in countryStore.countries) {
-        final countryName = country.country.toLowerCase();
+        final countryName = country.toLowerCase();
         if (countryName.contains(_text.toLowerCase())) {
           countriesFiltered.add(country);
         }
@@ -22,16 +23,14 @@ class CountryController {
   }
 
   void selectedCountry(
-      {required Country country,
-      required BuildContext context,
-      required int index}) {
+      {required String country, required BuildContext context}) {
     //controller.countryStore.setCountrySelected(country);
+    countryStore.setCountrySelected(country);
     Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => DetailsPage(
-          countries: countryStore.countriesFiltered,
-          indexCurrentCountry: index,
+          country: countryStore.countrySelected,
           store: countryStore,
         ),
       ),

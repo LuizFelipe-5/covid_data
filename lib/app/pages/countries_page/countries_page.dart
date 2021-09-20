@@ -11,7 +11,7 @@ class CountriesPage extends StatefulWidget {
     required this.countries,
   });
 
-  final List<Country> countries;
+  final List<String> countries;
 
   @override
   _CountriesPageState createState() => _CountriesPageState();
@@ -41,7 +41,7 @@ class _CountriesPageState extends State<CountriesPage> {
           padding: EdgeInsets.symmetric(vertical: 20.5, horizontal: 14.5),
           child: Observer(
             builder: (BuildContext context) {
-              //controller.countryStore.countrySelected;
+              controller.countryStore.countrySelected;
               return ListView.builder(
                 itemCount: controller.countryStore.countriesFiltered.length,
                 itemBuilder: (context, index) {
@@ -51,13 +51,13 @@ class _CountriesPageState extends State<CountriesPage> {
                     child: ListTile(
                       leading: CircleAvatar(
                         backgroundColor: Colors.white,
-                        child: Image.network(country.countryInfo.flag),
+                        child: Image.asset('assets/images/world.png'),
                       ),
-                      title: Text(country.country),
+                      title: Text(country),
                       trailing: Icon(Icons.arrow_forward),
                       onTap: () {
                         controller.selectedCountry(
-                            country: country, context: context, index: index);
+                            country: country, context: context);
                       },
                     ),
                   );

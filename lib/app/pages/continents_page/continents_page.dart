@@ -17,7 +17,7 @@ class _ContinentsPageState extends State<ContinentsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Covid Data',
           style: TextStyle(
             color: Colors.white,
@@ -41,14 +41,14 @@ class _ContinentsPageState extends State<ContinentsPage> {
                   title: Text(widget.continents[index].continent),
                   subtitle: Text(
                       '${widget.continents[index].countries.length} países'),
-                  trailing: Icon(Icons.arrow_forward),
+                  trailing: const Icon(Icons.arrow_forward),
                   onTap: () {
-                    // Navigator.of(context).push(
-                    //   MaterialPageRoute(
-                    //     builder: (context) => CountriesPage(
-                    //         countries: widget.continents[index].countries),
-                    //   ),
-                    // );
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => CountriesPage(
+                            countries: widget.continents[index].countries),
+                      ),
+                    );
                   },
                 ),
               );
