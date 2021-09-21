@@ -1,4 +1,4 @@
-import 'package:covid_data/app/controllers/country_controller.dart';
+import 'package:covid_data/app/pages/countries_page/country_controller.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -22,8 +22,7 @@ class _CountriesPageState extends State<CountriesPage> {
   void initState() {
     super.initState();
 
-    controller.countryStore.setListCountry(widget.countries);
-    controller.countryStore.setListCountryFiltered(widget.countries);
+    controller.initialize(widget.countries);
   }
 
   @override
@@ -33,37 +32,30 @@ class _CountriesPageState extends State<CountriesPage> {
       appBar: CustomAppBar(
         controller: controller,
       ),
-      body: Container(
-        color: primaryColor0,
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 20.5, horizontal: 14.5),
-          child: Observer(
-            builder: (BuildContext context) {
-              controller.countryStore.countrySelected;
-              return ListView.builder(
-                itemCount: controller.countryStore.countriesFiltered.length,
-                itemBuilder: (context, index) {
-                  final country =
-                      controller.countryStore.countriesFiltered[index];
-                  return Card(
-                    child: ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Image.asset('assets/images/world.png'),
-                      ),
-                      title: Text(country),
-                      trailing: Icon(Icons.arrow_forward),
-                      onTap: () {
-                        controller.selectedCountry(
-                            country: country, context: context);
-                      },
-                    ),
-                  );
-                },
+      body: Observer(
+        builder: (BuildContext context) {
+          return ListView.builder(
+            padding: EdgeInsets.symmetric(vertical: 20.5, horizontal: 14.5),
+            itemCount: controller.countryStore.countriesFiltered.length,
+            itemBuilder: (context, index) {
+              final country = controller.countryStore.countriesFiltered[index];
+              return Card(
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.white,
+                    child: Image.asset('assets/images/world.png'),
+                  ),
+                  title: Text(country),
+                  trailing: Icon(Icons.arrow_forward),
+                  onTap: () {
+                    controller.selectedCountry(
+                        country: country, context: context);
+                  },
+                ),
               );
             },
-          ),
-        ),
+          );
+        },
       ),
     );
   }

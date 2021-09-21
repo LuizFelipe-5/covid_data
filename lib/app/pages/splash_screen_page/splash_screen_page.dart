@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:covid_data/app/controllers/splash_screen_controller.dart';
+import 'package:covid_data/app/pages/continents_page/continents_page.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -11,13 +11,23 @@ class SplashScreenPage extends StatefulWidget {
 }
 
 class _SplashScreenPageState extends State<SplashScreenPage> {
-  SplashScreenController controller = SplashScreenController();
-
   @override
   void initState() {
     super.initState();
+    //  alterar req para a continents_page
+    delayedNavigate();
+  }
+  // lista.where()
+  // list.where((item)=> item.name == bubassauro)
+  //Future.delayed(Duration(seconds:2)).then(()=> Navegar())
 
-    controller.getContinents(context);
+  void delayedNavigate() {
+    Future.delayed(const Duration(seconds: 3), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (_) => const ContinentsPage()),
+      );
+    });
   }
 
   @override

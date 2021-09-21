@@ -1,12 +1,9 @@
 import 'package:covid_data/app/models/country.dart';
+import 'package:covid_data/app/utils/rest_client.dart';
 import 'package:dio/dio.dart';
 
 class CountryRepository {
-  final Dio _dio = Dio();
-
-  CountryRepository() {
-    _dio.options.baseUrl = 'https://disease.sh/v3/covid-19/';
-  }
+  final Dio _dio = RestClient.getClient();
 
   Future<List<Country>> getCountries() async {
     final response = await _dio.get('countries');

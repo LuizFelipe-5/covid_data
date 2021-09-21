@@ -1,4 +1,4 @@
-import 'package:covid_data/app/controllers/country_controller.dart';
+import 'package:covid_data/app/pages/countries_page/country_controller.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +6,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({Key? key, required this.controller}) : super(key: key);
 
   final CountryController controller;
-
+  //  treinar separacao de codigo - widget generico
   @override
   Widget build(BuildContext context) {
     return AppBar(

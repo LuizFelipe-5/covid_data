@@ -14,9 +14,6 @@ abstract class _CountryStoreBase with Store {
   @observable
   ObservableList<String> countriesFiltered = <String>[].asObservable();
 
-  @observable
-  String countrySelected = '';
-
   @action
   void changeState(bool isLoading) => this.isLoading = isLoading;
 
@@ -26,7 +23,4 @@ abstract class _CountryStoreBase with Store {
   @action
   void setListCountryFiltered(List<String> value) =>
       countriesFiltered = value.asObservable();
-
-  @action
-  void setCountrySelected(String country) => countrySelected = country;
 }

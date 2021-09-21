@@ -51,21 +51,6 @@ mixin _$CountryStore on _CountryStoreBase, Store {
     });
   }
 
-  final _$countrySelectedAtom = Atom(name: '_CountryStoreBase.countrySelected');
-
-  @override
-  String get countrySelected {
-    _$countrySelectedAtom.reportRead();
-    return super.countrySelected;
-  }
-
-  @override
-  set countrySelected(String value) {
-    _$countrySelectedAtom.reportWrite(value, super.countrySelected, () {
-      super.countrySelected = value;
-    });
-  }
-
   final _$_CountryStoreBaseActionController =
       ActionController(name: '_CountryStoreBase');
 
@@ -103,23 +88,11 @@ mixin _$CountryStore on _CountryStoreBase, Store {
   }
 
   @override
-  void setCountrySelected(String country) {
-    final _$actionInfo = _$_CountryStoreBaseActionController.startAction(
-        name: '_CountryStoreBase.setCountrySelected');
-    try {
-      return super.setCountrySelected(country);
-    } finally {
-      _$_CountryStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   String toString() {
     return '''
 isLoading: ${isLoading},
 countries: ${countries},
-countriesFiltered: ${countriesFiltered},
-countrySelected: ${countrySelected}
+countriesFiltered: ${countriesFiltered}
     ''';
   }
 }
