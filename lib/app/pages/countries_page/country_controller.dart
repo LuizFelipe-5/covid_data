@@ -24,16 +24,4 @@ class CountryController {
       countryStore.setListCountryFiltered(countryStore.countries);
     }
   }
-
-  void selectedCountry(
-      {required String country, required BuildContext context}) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DetailsPage(
-          country: country,
-        ),
-      ),
-    );
-  }
 }

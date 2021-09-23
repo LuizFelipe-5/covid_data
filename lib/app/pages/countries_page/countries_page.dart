@@ -1,4 +1,5 @@
 import 'package:covid_data/app/pages/countries_page/country_controller.dart';
+import 'package:covid_data/app/pages/details_page/details_page.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -30,7 +31,9 @@ class _CountriesPageState extends State<CountriesPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
-        controller: controller,
+        onChanged: controller.getCountriesFiltered,
+        title: 'Covid Data',
+        hintText: 'Encontre um país',
       ),
       body: Observer(
         builder: (BuildContext context) {
@@ -48,8 +51,14 @@ class _CountriesPageState extends State<CountriesPage> {
                   title: Text(country),
                   trailing: Icon(Icons.arrow_forward),
                   onTap: () {
-                    controller.selectedCountry(
-                        country: country, context: context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DetailsPage(
+                          country: country,
+                        ),
+                      ),
+                    );
                   },
                 ),
               );

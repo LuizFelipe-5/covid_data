@@ -18,13 +18,12 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   DetailsController controller = DetailsController();
-  String get country => widget.country;
 
   @override
   void initState() {
     super.initState();
 
-    controller.getCountry(country);
+    controller.getCountry(widget.country);
   }
 
   @override
@@ -35,7 +34,7 @@ class _DetailsPageState extends State<DetailsPage> {
           appBar: AppBar(
             backgroundColor: secondaryColor,
             title: Text(
-              country,
+              widget.country,
               style: const TextStyle(
                 color: Colors.white,
               ),
@@ -56,7 +55,7 @@ class _DetailsPageState extends State<DetailsPage> {
                           child: Column(
                             children: [
                               Text(
-                                country,
+                                widget.country,
                                 style: const TextStyle(
                                   fontSize: 20,
                                 ),
