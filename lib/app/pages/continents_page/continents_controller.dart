@@ -1,5 +1,5 @@
 import 'package:covid_data/app/repositories/continent_repository.dart';
-import 'package:covid_data/app/shared/stores/continent_store.dart';
+import 'package:covid_data/app/pages/continents_page/continents_store.dart';
 
 class ContinentsController {
   ContinentStore store = ContinentStore();

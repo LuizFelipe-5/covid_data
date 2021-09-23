@@ -1,5 +1,5 @@
-import 'package:covid_data/app/models/continent.dart';
 import 'package:covid_data/app/pages/continents_page/continents_controller.dart';
+import 'package:covid_data/app/pages/continents_page/continents_data.dart';
 import 'package:covid_data/app/pages/countries_page/countries_page.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +9,8 @@ class ContinentsPage extends StatefulWidget {
   const ContinentsPage({
     Key? key,
   }) : super(key: key);
+
+  static const String routeName = '/ContinentsPage';
 
   @override
   _ContinentsPageState createState() => _ContinentsPageState();
@@ -59,12 +61,10 @@ class _ContinentsPageState extends State<ContinentsPage> {
                                 '${controller.store.continents[index].countries.length} países'),
                             trailing: const Icon(Icons.arrow_forward),
                             onTap: () {
-                              Navigator.of(context).push(
-                                MaterialPageRoute(
-                                  builder: (context) => CountriesPage(
-                                      countries: controller
-                                          .store.continents[index].countries),
-                                ),
+                              Navigator.of(context).pushNamed(
+                                CountriesPage.routeName,
+                                arguments: ContinentsData(controller
+                                    .store.continents[index].countries),
                               );
                             },
                           ),

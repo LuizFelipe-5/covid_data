@@ -1,4 +1,3 @@
-import 'package:covid_data/app/pages/countries_page/country_controller.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +22,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         children: [
           Text(
             title,
-            style: TextStyle(color: Colors.white),
+            style: const TextStyle(color: Colors.white),
           ),
           const SizedBox(
             height: 10,
@@ -32,7 +31,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             onChanged: onChanged,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
-              prefixIcon: Padding(
+              prefixIcon: const Padding(
                 padding: EdgeInsets.only(left: 8, right: 8),
                 child: Icon(
                   Icons.search,

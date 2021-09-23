@@ -1,10 +1,13 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:covid_data/app/pages/continents_page/continents_page.dart';
+import 'package:covid_data/app/pages/countries_page/countries_page.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreenPage extends StatefulWidget {
   const SplashScreenPage({Key? key}) : super(key: key);
+
+  static final String routeName = '/SplashScreenPage';
 
   @override
   _SplashScreenPageState createState() => _SplashScreenPageState();
@@ -23,10 +26,7 @@ class _SplashScreenPageState extends State<SplashScreenPage> {
 
   void delayedNavigate() {
     Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(builder: (_) => const ContinentsPage()),
-      );
+      Navigator.pushReplacementNamed(context, ContinentsPage.routeName);
     });
   }
 

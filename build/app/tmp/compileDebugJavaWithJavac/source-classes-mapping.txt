@@ -1,4 +1,0 @@
-io/flutter/plugins/GeneratedPluginRegistrant.java
- io.flutter.plugins.GeneratedPluginRegistrant
-com/montuani/covid_data/BuildConfig.java
- com.montuani.covid_data.BuildConfig

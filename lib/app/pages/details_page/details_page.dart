@@ -1,11 +1,11 @@
 import 'package:covid_data/app/pages/details_page/details_controller.dart';
-import 'package:covid_data/app/shared/stores/country_store.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 
 class DetailsPage extends StatefulWidget {
   final String country;
+  static const String routeName = '/DetailsPage';
 
   const DetailsPage({
     Key? key,
@@ -151,7 +151,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     ),
                     Positioned(
                       top: 30,
-                      child: Container(
+                      child: SizedBox(
                         height: 180,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(4),
