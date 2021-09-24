@@ -1,7 +1,10 @@
+import 'package:covid_data/app/models/country.dart';
 import 'package:covid_data/app/pages/countries_page/countries_store.dart';
 
 class CountryController {
-  CountryStore countryStore = CountryStore();
+  CountryStore countryStore;
+
+  CountryController({required this.countryStore});
 
   void initialize(List<String> countries) {
     countryStore.setListCountry(countries);

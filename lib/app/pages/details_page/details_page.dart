@@ -2,6 +2,7 @@ import 'package:covid_data/app/pages/details_page/details_controller.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 
 class DetailsPage extends StatefulWidget {
   final String country;
@@ -17,12 +18,12 @@ class DetailsPage extends StatefulWidget {
 }
 
 class _DetailsPageState extends State<DetailsPage> {
-  DetailsController controller = DetailsController();
+  late DetailsController controller;
 
   @override
   void initState() {
     super.initState();
-
+    controller = GetIt.I.get<DetailsController>();
     controller.getCountry(widget.country);
   }
 

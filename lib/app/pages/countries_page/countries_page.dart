@@ -2,8 +2,10 @@ import 'package:covid_data/app/pages/continents_page/continents_data.dart';
 import 'package:covid_data/app/pages/countries_page/countries_controller.dart';
 import 'package:covid_data/app/pages/countries_page/countries_data.dart';
 import 'package:covid_data/app/pages/details_page/details_page.dart';
+import 'package:covid_data/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 import 'widgets/custom_app_bar_widget.dart';
 
 class CountriesPage extends StatefulWidget {
@@ -19,12 +21,12 @@ class CountriesPage extends StatefulWidget {
 }
 
 class _CountriesPageState extends State<CountriesPage> {
-  CountryController controller = CountryController();
+  late CountryController controller;
 
   @override
   void initState() {
     super.initState();
-
+    controller = GetIt.I.get<CountryController>();
     controller.initialize(widget.countries);
   }
 

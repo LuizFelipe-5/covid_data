@@ -1,17 +1,12 @@
 import 'package:covid_data/app/repositories/continent_repository.dart';
 import 'package:covid_data/app/pages/continents_page/continents_store.dart';
+import 'package:get_it/get_it.dart';
 
 class ContinentsController {
-  ContinentStore store = ContinentStore();
-  final repository = ContinentRepository();
+  late ContinentStore store;
+  late ContinentRepository repository;
 
-  // Future<List<Continent>> getContinents() async {
-  //   store.changeState(true);
-  //   final continents = await repository.getContinents();
-  //   store.setListContinent(continents);
-  //   store.changeState(false);
-  //   return continents;
-  // }
+  ContinentsController({required this.store, required this.repository});
 
   Future<void> getContinents() async {
     store.changeState(true);

@@ -4,6 +4,7 @@ import 'package:covid_data/app/pages/countries_page/countries_page.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:get_it/get_it.dart';
 
 class ContinentsPage extends StatefulWidget {
   const ContinentsPage({
@@ -17,12 +18,11 @@ class ContinentsPage extends StatefulWidget {
 }
 
 class _ContinentsPageState extends State<ContinentsPage> {
-  ContinentsController controller = ContinentsController();
-
+  late ContinentsController controller;
   @override
   void initState() {
     super.initState();
-
+    controller = GetIt.I.get<ContinentsController>();
     controller.getContinents();
   }
 

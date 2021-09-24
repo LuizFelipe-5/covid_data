@@ -1,9 +1,10 @@
 import 'package:dio/dio.dart';
 
 class RestClient {
-  static Dio getClient() {
-    final Dio dio = Dio();
-
+  // deixar de ser static, injetar Dio
+  Dio dio;
+  RestClient({required this.dio});
+  Dio getClient() {
     dio.options.baseUrl = 'https://disease.sh/v3/covid-19/';
     return dio;
   }
