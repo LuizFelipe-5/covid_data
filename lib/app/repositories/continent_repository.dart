@@ -3,10 +3,13 @@ import 'package:covid_data/app/utils/rest_client.dart';
 import 'package:dio/dio.dart';
 
 class ContinentRepository {
-  final Dio _dio = RestClient.getClient();
+  //final Dio _dio = RestClient.getClient();
+  //Dio dio;
+  RestClient restClient;
+  ContinentRepository({required this.restClient});
 
   Future<List<Continent>> getContinents() async {
-    final response = await _dio.get('continents');
+    final response = await restClient.dio.get('continents');
     final list = response.data as List;
     return list.map((json) => Continent.fromJson(json)).toList();
   }
