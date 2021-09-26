@@ -7,9 +7,10 @@ class ContinentRepository {
   //Dio dio;
   RestClient restClient;
   ContinentRepository({required this.restClient});
+  Dio get request => restClient.getClient();
 
   Future<List<Continent>> getContinents() async {
-    final response = await restClient.dio.get('continents');
+    final response = await request.get('continents');
     final list = response.data as List;
     return list.map((json) => Continent.fromJson(json)).toList();
   }
