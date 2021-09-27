@@ -19,6 +19,7 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage> {
   late DetailsController controller;
+  bool isFavorite = true;
 
   @override
   void initState() {
@@ -33,6 +34,17 @@ class _DetailsPageState extends State<DetailsPage> {
       builder: (BuildContext context) {
         return Scaffold(
           appBar: AppBar(
+            actions: [
+              isFavorite
+                  ? IconButton(
+                      icon: const Icon(Icons.favorite),
+                      onPressed: () {},
+                    )
+                  : IconButton(
+                      icon: const Icon(Icons.favorite_border),
+                      onPressed: () {},
+                    ),
+            ],
             backgroundColor: secondaryColor,
             title: Text(
               widget.country,
