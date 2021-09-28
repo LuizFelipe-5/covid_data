@@ -35,6 +35,5 @@ class DetailsController {
     } else {
       favoritesStore.removeFromFavorites(country);
     }
-    print(favoritesStore.favorites);
   }
 }

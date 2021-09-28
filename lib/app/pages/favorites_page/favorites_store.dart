@@ -5,9 +5,6 @@ part 'favorites_store.g.dart';
 class FavoritesStore = _FavoritesStoreBase with _$FavoritesStore;
 
 abstract class _FavoritesStoreBase with Store {
-  // @observable
-  // bool isFavorite = false;
-
   @observable
   ObservableList<Country> favorites = <Country>[].asObservable();
 
@@ -15,15 +12,6 @@ abstract class _FavoritesStoreBase with Store {
   void addToFavorites(Country country) => favorites.add(country);
 
   @action
-  void removeFromFavorites(Country country) => favorites.remove(country);
-
-  // @action
-  // bool isFavorite(Country country) {
-  //   for (Country favorite in favorites) {
-  //     if (favorite.country == country.country) {
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // }
+  void removeFromFavorites(Country country) => favorites.removeWhere(
+      (Country favoriteCountry) => favoriteCountry.country == country.country);
 }

@@ -3,6 +3,7 @@ import 'package:covid_data/app/pages/details_page/details_page.dart';
 import 'package:covid_data/app/pages/favorites_page/favorites_controller.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:get_it/get_it.dart';
 
 class FavoritesPage extends StatefulWidget {
@@ -36,35 +37,33 @@ class _FavoritesPageState extends State<FavoritesPage> {
         centerTitle: true,
         backgroundColor: secondaryColor,
       ),
-      body: Scaffold(
-        body: Padding(
+      body: Observer(builder: (_) {
+        return ListView.builder(
           padding: const EdgeInsets.symmetric(vertical: 20.5, horizontal: 14.5),
-          child: ListView.builder(
-            itemCount: controller.favorites.length,
-            itemBuilder: (context, index) {
-              return Card(
-                child: ListTile(
-                  leading: CircleAvatar(
-                    backgroundColor: Colors.white,
-                    child: Image.network(
-                      controller.favorites[index].countryInfo.flag,
-                    ),
+          itemCount: controller.store.favorites.length,
+          itemBuilder: (context, index) {
+            final favorite = controller.store.favorites[index];
+            return Card(
+              child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.white,
+                  child: Image.network(
+                    favorite.countryInfo.flag,
                   ),
-                  title: Text(controller.favorites[index].country),
-                  trailing: const Icon(Icons.arrow_forward),
-                  onTap: () {
-                    Navigator.of(context).pushNamed(
-                      DetailsPage.routeName,
-                      arguments:
-                          CountriesData(controller.favorites[index].country),
-                    );
-                  },
                 ),
-              );
-            },
-          ),
-        ),
-      ),
+                title: Text(favorite.country),
+                trailing: const Icon(Icons.arrow_forward),
+                onTap: () {
+                  Navigator.of(context).pushNamed(
+                    DetailsPage.routeName,
+                    arguments: CountriesData(favorite.country),
+                  );
+                },
+              ),
+            );
+          },
+        );
+      }),
     );
   }
 }
