@@ -6,9 +6,12 @@ import 'package:covid_data/app/pages/details_page/details_store.dart';
 class DetailsController {
   DetailsStore detailsStore;
   CountryRepository repository;
-  FavoritesStore store = FavoritesStore();
+  FavoritesStore favoritesStore;
 
-  DetailsController({required this.detailsStore, required this.repository});
+  DetailsController(
+      {required this.detailsStore,
+      required this.repository,
+      required this.favoritesStore});
 
   Future<void> getCountry(String countryName) async {
     detailsStore.changeState(true);
@@ -17,14 +20,21 @@ class DetailsController {
     detailsStore.changeState(false);
   }
 
-  void changeFavoritesList(Country country) {
-    if (store.isFavorite == false) {
-      store.changeState(true);
-      store.setFavorite(country);
-      store.setListFavorites(favorite);
-    } else {
-      store.changeState(false);
-      store.removeFavorite(country);
+  bool isFavorite(Country country) {
+    for (Country favorite in favoritesStore.favorites) {
+      if (favorite.country == country.country) {
+        return true;
+      }
     }
+    return false;
+  }
+
+  void changeFavoritesList(Country country) {
+    if (!isFavorite(country)) {
+      favoritesStore.addToFavorites(country);
+    } else {
+      favoritesStore.removeFromFavorites(country);
+    }
+    print(favoritesStore.favorites);
   }
 }

@@ -6,7 +6,5 @@ class FavoritesController {
 
   FavoritesController({required this.store});
 
-  void initialize(List<Country> countries) {}
-
-  void getFavoritesCountries() {}
+  List<Country> get favorites => store.favorites;
 }

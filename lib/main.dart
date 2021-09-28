@@ -4,6 +4,8 @@ import 'package:covid_data/app/pages/countries_page/countries_controller.dart';
 import 'package:covid_data/app/pages/countries_page/countries_store.dart';
 import 'package:covid_data/app/pages/details_page/details_controller.dart';
 import 'package:covid_data/app/pages/details_page/details_store.dart';
+import 'package:covid_data/app/pages/favorites_page/favorites_controller.dart';
+import 'package:covid_data/app/pages/favorites_page/favorites_store.dart';
 import 'package:covid_data/app/repositories/continent_repository.dart';
 import 'package:covid_data/app/repositories/country_repository.dart';
 import 'package:covid_data/app/utils/rest_client.dart';
@@ -25,8 +27,13 @@ void main() {
   getIt.registerLazySingleton(
       () => CountryController(countryStore: getIt.get()));
   getIt.registerFactory(() => CountryRepository(restClient: getIt.get()));
+  getIt.registerLazySingleton(() => FavoritesStore());
+  getIt.registerFactory(() => FavoritesController(store: getIt.get()));
   getIt.registerLazySingleton(() => DetailsStore());
-  getIt.registerLazySingleton(() =>
-      DetailsController(repository: getIt.get(), detailsStore: getIt.get()));
+  getIt.registerLazySingleton(() => DetailsController(
+        repository: getIt.get(),
+        detailsStore: getIt.get(),
+        favoritesStore: getIt.get(),
+      ));
   runApp(const MyApp());
 }
