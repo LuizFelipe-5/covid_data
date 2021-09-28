@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:covid_data/app/pages/continents_page/continents_controller.dart';
 import 'package:covid_data/app/pages/continents_page/continents_store.dart';
 import 'package:covid_data/app/pages/countries_page/countries_controller.dart';
@@ -35,5 +37,6 @@ void main() {
         detailsStore: getIt.get(),
         favoritesStore: getIt.get(),
       ));
+
   runApp(const MyApp());
 }
