@@ -14,4 +14,8 @@ abstract class _FavoritesStoreBase with Store {
   @action
   void removeFromFavorites(Country country) => favorites.removeWhere(
       (Country favoriteCountry) => favoriteCountry.country == country.country);
+
+  @action
+  void setListFavorites(List<Country> countries) =>
+      favorites = countries.asObservable();
 }

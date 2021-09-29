@@ -50,6 +50,17 @@ mixin _$FavoritesStore on _FavoritesStoreBase, Store {
   }
 
   @override
+  void setListFavorites(List<Country> countries) {
+    final _$actionInfo = _$_FavoritesStoreBaseActionController.startAction(
+        name: '_FavoritesStoreBase.setListFavorites');
+    try {
+      return super.setListFavorites(countries);
+    } finally {
+      _$_FavoritesStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 favorites: ${favorites}
