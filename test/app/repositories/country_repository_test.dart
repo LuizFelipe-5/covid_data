@@ -35,7 +35,7 @@ void main() {
   });
 
   test('Deveria retornar um objeto do tipo Country', () async {
-    final country = await countryRepository.getCountry(any());
+    final country = await countryRepository.getCountry('Brazil');
     expect(country, isA<Country>());
   });
 }
