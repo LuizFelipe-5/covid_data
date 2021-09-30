@@ -134,6 +134,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "coverage",
+      "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/coverage-1.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "crypto",
       "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/crypto-3.0.1",
       "packageUri": "lib/",
@@ -320,8 +326,20 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "mocktail",
+      "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/mocktail-0.1.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "nested",
       "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/nested-1.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "node_preamble",
+      "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/node_preamble-2.0.1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -422,6 +440,18 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "shelf_packages_handler",
+      "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/shelf_packages_handler-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "shelf_static",
+      "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/shelf_static-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "shelf_web_socket",
       "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/shelf_web_socket-1.0.1",
       "packageUri": "lib/",
@@ -436,6 +466,18 @@
     {
       "name": "source_gen",
       "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/source_gen-1.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "source_map_stack_trace",
+      "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/source_map_stack_trace-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "source_maps",
+      "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/source_maps-0.10.10",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -476,8 +518,20 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "test",
+      "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/test-1.17.10",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "test_api",
       "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/test_api-0.4.2",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "test_core",
+      "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/test_core-0.4.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -500,6 +554,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "vm_service",
+      "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/vm_service-7.3.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "watcher",
       "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/watcher-1.0.0",
       "packageUri": "lib/",
@@ -508,6 +568,12 @@
     {
       "name": "web_socket_channel",
       "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/web_socket_channel-2.1.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "webkit_inspection_protocol",
+      "rootUri": "file:///home/luizfelipe/development/flutter/.pub-cache/hosted/pub.dartlang.org/webkit_inspection_protocol-1.0.0",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -536,7 +602,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-09-29T15:16:13.489167Z",
+  "generated": "2021-09-30T17:37:35.968378Z",
   "generator": "pub",
   "generatorVersion": "2.14.2"
 }
