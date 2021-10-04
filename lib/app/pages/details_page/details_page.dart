@@ -1,4 +1,5 @@
 import 'package:covid_data/app/pages/details_page/details_controller.dart';
+import 'package:covid_data/app/utils/app_state.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -52,7 +53,7 @@ class _DetailsPageState extends State<DetailsPage> {
               ),
             ),
           ),
-          body: !controller.detailsStore.isLoading
+          body: controller.detailsStore.state == AppState.SUCCESS
               ? Stack(
                   alignment: Alignment.topCenter,
                   children: [

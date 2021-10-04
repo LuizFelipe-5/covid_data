@@ -2,6 +2,7 @@ import 'package:covid_data/app/pages/continents_page/continents_controller.dart'
 import 'package:covid_data/app/pages/continents_page/continents_data.dart';
 import 'package:covid_data/app/pages/countries_page/countries_page.dart';
 import 'package:covid_data/app/pages/favorites_page/favorites_page.dart';
+import 'package:covid_data/app/utils/app_state.dart';
 import 'package:covid_data/app/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -42,7 +43,7 @@ class _ContinentsPageState extends State<ContinentsPage> {
               centerTitle: true,
               backgroundColor: secondaryColor,
             ),
-            body: !controller.store.isLoading
+            body: controller.store.state == AppState.SUCCESS
                 ? Scaffold(
                     body: Padding(
                       padding: const EdgeInsets.symmetric(

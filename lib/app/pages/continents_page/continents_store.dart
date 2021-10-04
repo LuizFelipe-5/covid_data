@@ -1,4 +1,5 @@
 import 'package:covid_data/app/models/continent.dart';
+import 'package:covid_data/app/utils/app_state.dart';
 import 'package:mobx/mobx.dart';
 part 'continents_store.g.dart';
 
@@ -6,13 +7,13 @@ class ContinentStore = _ContinentStoreBase with _$ContinentStore;
 
 abstract class _ContinentStoreBase with Store {
   @observable
-  bool isLoading = false;
+  AppState state = AppState.LOADING;
 
   @observable
   ObservableList<Continent> continents = <Continent>[].asObservable();
 
   @action
-  void changeState(bool isLoading) => this.isLoading = isLoading;
+  void changeState(AppState state) => this.state = state;
 
   @action
   void setListContinent(List<Continent> value) =>

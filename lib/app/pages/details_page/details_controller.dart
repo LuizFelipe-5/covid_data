@@ -4,6 +4,7 @@ import 'package:covid_data/app/models/country.dart';
 import 'package:covid_data/app/pages/favorites_page/favorites_store.dart';
 import 'package:covid_data/app/repositories/country_repository.dart';
 import 'package:covid_data/app/pages/details_page/details_store.dart';
+import 'package:covid_data/app/utils/app_state.dart';
 import 'package:covid_data/app/utils/local_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
@@ -21,10 +22,14 @@ class DetailsController {
       required this.storage});
 
   Future<void> getCountry(String countryName) async {
-    detailsStore.changeState(true);
+    detailsStore.changeState(AppState.LOADING);
     final country = await repository.getCountry(countryName);
-    detailsStore.setCountry(country);
-    detailsStore.changeState(false);
+    if (country == null) {
+      detailsStore.changeState(AppState.ERROR);
+    } else {
+      detailsStore.setCountry(country);
+      detailsStore.changeState(AppState.SUCCESS);
+    }
   }
 
   bool isFavorite(Country country) {
