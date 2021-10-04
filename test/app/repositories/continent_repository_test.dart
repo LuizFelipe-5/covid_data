@@ -16,6 +16,7 @@ void main() {
 
   Response dioResponse = Response(
     requestOptions: RequestOptions(path: ''),
+    statusCode: 200,
     data: [
       {
         'continent': 'Asia',
@@ -34,7 +35,7 @@ void main() {
 
   test('Deveria retornar uma lista do tipo Continent', () async {
     final listContinents = await continentRepository.getContinents();
-    expect(listContinents!, isA<List<Continent>>());
+    expect(listContinents, isA<List<Continent>?>());
   });
 
   test('Deveria retornar uma lista não vazia', () async {

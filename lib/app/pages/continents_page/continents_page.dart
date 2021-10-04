@@ -75,22 +75,22 @@ class _ContinentsPageState extends State<ContinentsPage> {
     );
   }
 
+  changeState(AppState state) {
+    switch (state) {
+      case AppState.SUCCESS:
+        return _success();
+      case AppState.LOADING:
+        return _loading();
+      case AppState.ERROR:
+        return _error();
+      default:
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Observer(
       builder: (BuildContext context) {
-        changeState(AppState state) {
-          switch (state) {
-            case AppState.SUCCESS:
-              return _success();
-            case AppState.LOADING:
-              return _loading();
-            case AppState.ERROR:
-              return _error();
-            default:
-          }
-        }
-
         return Scaffold(
             appBar: AppBar(
               title: const Text(
