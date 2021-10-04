@@ -29,15 +29,16 @@ void main() {
     restClient = RestClient(dio: mockDio);
     continentRepository = ContinentRepository(restClient: restClient);
     when(() => mockDio.get(any())).thenAnswer((_) => Future.value(dioResponse));
+    //when(() => mockDio.get(any())).thenThrow((_) => Future.value(dioResponse));
   });
 
   test('Deveria retornar uma lista do tipo Continent', () async {
     final listContinents = await continentRepository.getContinents();
-    expect(listContinents, isA<List<Continent>>());
+    expect(listContinents!, isA<List<Continent>>());
   });
 
   test('Deveria retornar uma lista não vazia', () async {
     final listContinents = await continentRepository.getContinents();
-    expect(listContinents.isNotEmpty, equals(true));
+    expect(listContinents?.isNotEmpty, equals(true));
   });
 }
