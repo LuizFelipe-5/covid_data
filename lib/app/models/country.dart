@@ -16,7 +16,7 @@ class Country {
       required this.active,
       required this.continent});
 
-  Country.fromJson(Map<String, dynamic> json) {
+  Country.fromJson(Map<dynamic, dynamic> json) {
     country = json['country'];
     countryInfo = (json['countryInfo'] != null
         ? new CountryInfo.fromJson(json['countryInfo'])
@@ -48,7 +48,7 @@ class CountryInfo {
 
   CountryInfo({required this.flag});
 
-  CountryInfo.fromJson(Map<String, dynamic> json) {
+  CountryInfo.fromJson(Map<dynamic, dynamic> json) {
     flag = json['flag'];
   }
 

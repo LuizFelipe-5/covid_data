@@ -9,18 +9,18 @@ part of 'continents_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
 
 mixin _$ContinentStore on _ContinentStoreBase, Store {
-  final _$isLoadingAtom = Atom(name: '_ContinentStoreBase.isLoading');
+  final _$stateAtom = Atom(name: '_ContinentStoreBase.state');
 
   @override
-  bool get isLoading {
-    _$isLoadingAtom.reportRead();
-    return super.isLoading;
+  AppState get state {
+    _$stateAtom.reportRead();
+    return super.state;
   }
 
   @override
-  set isLoading(bool value) {
-    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
-      super.isLoading = value;
+  set state(AppState value) {
+    _$stateAtom.reportWrite(value, super.state, () {
+      super.state = value;
     });
   }
 
@@ -43,11 +43,11 @@ mixin _$ContinentStore on _ContinentStoreBase, Store {
       ActionController(name: '_ContinentStoreBase');
 
   @override
-  void changeState(bool isLoading) {
+  void changeState(AppState state) {
     final _$actionInfo = _$_ContinentStoreBaseActionController.startAction(
         name: '_ContinentStoreBase.changeState');
     try {
-      return super.changeState(isLoading);
+      return super.changeState(state);
     } finally {
       _$_ContinentStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -67,7 +67,7 @@ mixin _$ContinentStore on _ContinentStoreBase, Store {
   @override
   String toString() {
     return '''
-isLoading: ${isLoading},
+state: ${state},
 continents: ${continents}
     ''';
   }
