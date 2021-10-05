@@ -42,4 +42,10 @@ void main() {
     final listContinents = await continentRepository.getContinents();
     expect(listContinents?.isNotEmpty, equals(true));
   });
+
+  test('Deveria retornar um erro', () async {
+    when(() => mockDio.get(any())).thenThrow(Exception());
+    final listContinents = await continentRepository.getContinents();
+    expect(listContinents, equals(null));
+  });
 }
