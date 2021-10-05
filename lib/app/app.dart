@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue)
             .copyWith(secondary: secondaryColor),
       ),
-      initialRoute: Example.routeName,
+      initialRoute: SplashScreenPage.routeName,
       onGenerateRoute: (settings) {
         // colocar rotas sem parametro
         if (settings.name == SplashScreenPage.routeName) {

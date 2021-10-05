@@ -38,4 +38,10 @@ void main() {
     final country = await countryRepository.getCountry('Brazil');
     expect(country, isA<Country>());
   });
+
+  test('Deveria retornar um erro', () async {
+    when(() => mockDio.get(any())).thenThrow(Exception());
+    final country = await countryRepository.getCountry('Brazil');
+    expect(country, equals(null));
+  });
 }
