@@ -31,7 +31,7 @@ class _DetailsPageState extends State<DetailsPage>
     controller.getCountry(widget.country);
     animationController = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 800),
+      duration: const Duration(seconds: 1),
     );
     animation = Tween<double>(begin: 0.0, end: 1.0).animate(CurvedAnimation(
       parent: animationController,
@@ -169,13 +169,14 @@ class _DetailsPageState extends State<DetailsPage>
             child: AnimatedBuilder(
                 animation: animation,
                 builder: (context, snapshot) {
-                  return !animationController.isDismissed
-                      ? Icon(
-                          Icons.favorite,
-                          color: secondaryColor.withOpacity(animation.value),
-                          size: 100 * animation.value,
-                        )
-                      : Container();
+                  return Transform.scale(
+                    scale: 5 * animation.value,
+                    alignment: Alignment.center,
+                    child: Icon(
+                      Icons.favorite,
+                      color: secondaryColor.withOpacity(animation.value),
+                    ),
+                  );
                 }),
           ),
         ],

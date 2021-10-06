@@ -3,6 +3,7 @@ import 'package:covid_data/app/pages/details_page/details_controller.dart';
 import 'package:covid_data/app/pages/details_page/details_store.dart';
 import 'package:covid_data/app/pages/favorites_page/favorites_store.dart';
 import 'package:covid_data/app/repositories/country_repository.dart';
+import 'package:covid_data/app/utils/app_state.dart';
 import 'package:covid_data/app/utils/local_storage.dart';
 import 'package:covid_data/app/utils/rest_client.dart';
 import 'package:dio/dio.dart';
@@ -87,10 +88,15 @@ void main() {
     expect(favoriteCountry, isA<bool>());
   });
 
-  // test('Deveria ser retornado true (favorito) ou false (não favorito)', () {
-  //   final favoriteCountry = detailsController.isFavorite(country);
-  //   expect(favoriteCountry, isA<bool>());
-  // });
+  test('Deveria ser retornado o estado de SUCCESS', () async {
+    final country = await detailsController.getCountry('Chile');
+    expect(detailsStore.state, equals(AppState.SUCCESS));
+  });
+
+  test('Deveria ser retornado o estado de ERRO', () async {
+    await detailsController.getCountry('X');
+    expect(detailsStore.state, equals(AppState.ERROR));
+  });
 
   test('Deveria adicionar uma país na lista de favoritos', () {
     favoritesStore.addToFavorites(country);
@@ -116,7 +122,7 @@ void main() {
 
     final listFavorites = favoritesStore.favorites;
     expect(listFavorites.last, isNot(country3));
-    expect(listFavorites.contains(country2), equals(false));
+    expect(listFavorites.contains(country3), equals(false));
   });
 
   test('Deveria remover um país da lista de favoritos', () {
