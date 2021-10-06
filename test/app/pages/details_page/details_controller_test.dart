@@ -118,19 +118,24 @@ void main() {
   });
 
   test('Deveria remover um país da lista de favoritos', () {
+    // ACT
     favoritesStore.addToFavorites(country);
     favoritesStore.removeFromFavorites(country);
     final listFavoritess = favoritesStore.favorites;
+    // ASSERT
     expect(listFavoritess.isEmpty, equals(true));
   });
 
   test('Deveria salvar a lista de países favoritos no local storage', () async {
+    // ARRANGE
     when(() => mockHiveInterface.openBox(any()))
         .thenAnswer((_) async => mockHiveBox);
-    //when(() => mockHiveBox.put(any(), any())).thenAnswer((invocation) => null);
-
-    favoritesStore.addToFavorites(country);
-    favoritesStore.addToFavorites(country2);
-    favoritesStore.addToFavorites(country3);
+    when(() => mockHiveBox.put(any(), any()));
+    when(() => mockHiveBox.get(any()))
+        .thenAnswer((_) => countries.map((e) => e.toJson()));
+    // ACT
+    final isSaved = await detailsController.saveFavorites();
+    // ASSERT
+    expect(isSaved, equals(true));
   });
 }

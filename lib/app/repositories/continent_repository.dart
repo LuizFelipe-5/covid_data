@@ -3,8 +3,6 @@ import 'package:covid_data/app/utils/rest_client.dart';
 import 'package:dio/dio.dart';
 
 class ContinentRepository {
-  //final Dio _dio = RestClient.getClient();
-  //Dio dio;
   RestClient restClient;
   ContinentRepository({required this.restClient});
   Dio get request => restClient.getClient();

@@ -34,6 +34,8 @@ void main() {
   });
 
   test('Deveria ser retornado o estado de ERROR', () async {
+    when(() => continentRepository.getContinents())
+        .thenAnswer((_) async => null);
     await continentsController.getContinents();
     expect(continentStore.state, equals(AppState.ERROR));
   });

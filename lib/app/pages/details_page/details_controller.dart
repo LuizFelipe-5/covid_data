@@ -50,12 +50,21 @@ class DetailsController {
     saveFavorites();
   }
 
-  void saveFavorites() async {
-    var box = await storage.openBox('favorites');
+  Future<bool> saveFavorites() async {
+    try {
+      var box = await storage.openBox('favorites');
 
-    final favoritesList =
-        favoritesStore.favorites.map((element) => element.toJson()).toList();
-    box.put('countries', favoritesList);
+      final favoritesList =
+          favoritesStore.favorites.map((element) => element.toJson()).toList();
+      await box.put('countries', favoritesList);
+      if (box.get('countries') == favoritesList) {
+        return true;
+      } else {
+        throw Exception();
+      }
+    } catch (e) {
+      return false;
+    }
   }
 
   // void storingData(Country country) async {
