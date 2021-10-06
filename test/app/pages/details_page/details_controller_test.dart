@@ -5,15 +5,12 @@ import 'package:covid_data/app/pages/favorites_page/favorites_store.dart';
 import 'package:covid_data/app/repositories/country_repository.dart';
 import 'package:covid_data/app/utils/app_state.dart';
 import 'package:covid_data/app/utils/local_storage.dart';
-import 'package:covid_data/app/utils/rest_client.dart';
-import 'package:dio/dio.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
 import 'package:mocktail/mocktail.dart';
 
-class MockDio extends Mock implements Dio {
-  BaseOptions options = BaseOptions();
-}
+class MockCountryRepository extends Mock implements CountryRepository {}
 
 class MockHiveBox extends Mock implements Box {}
 
@@ -27,11 +24,6 @@ void main() {
   late FavoritesStore favoritesStore;
   late LocalStorage localStorage;
   late DetailsController detailsController;
-  late RestClient restClient;
-  late MockDio mockDio;
-
-  // Response dioResponse = Response(requestOptions: RequestOptions(path: ''),
-  // data: );
 
   Country country = Country(
     country: 'Brazil',
@@ -70,9 +62,7 @@ void main() {
     mockHiveInterface = MockHiveInterface();
     localStorage = LocalStorage();
     detailsStore = DetailsStore();
-    mockDio = MockDio();
-    restClient = RestClient(dio: mockDio);
-    countryRepository = CountryRepository(restClient: restClient);
+    countryRepository = MockCountryRepository();
     favoritesStore = FavoritesStore();
     detailsController = DetailsController(
         detailsStore: detailsStore,
@@ -89,11 +79,13 @@ void main() {
   });
 
   test('Deveria ser retornado o estado de SUCCESS', () async {
-    final country = await detailsController.getCountry('Chile');
+    when(() => countryRepository.getCountry(any()))
+        .thenAnswer((_) async => country3);
+    await detailsController.getCountry('Chile');
     expect(detailsStore.state, equals(AppState.SUCCESS));
   });
 
-  test('Deveria ser retornado o estado de ERRO', () async {
+  test('Deveria ser retornado o estado de ERROR', () async {
     await detailsController.getCountry('X');
     expect(detailsStore.state, equals(AppState.ERROR));
   });
