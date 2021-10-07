@@ -23,7 +23,7 @@ void main() {
   late CountryRepository countryRepository;
   late FavoritesStore favoritesStore;
   late LocalStorage localStorage;
-  late DetailsController detailsController;
+  late CountryDetailsController detailsController;
 
   Country country = Country(
     country: 'Brazil',
@@ -64,7 +64,7 @@ void main() {
     detailsStore = DetailsStore();
     countryRepository = MockCountryRepository();
     favoritesStore = FavoritesStore();
-    detailsController = DetailsController(
+    detailsController = CountryDetailsController(
         detailsStore: detailsStore,
         repository: countryRepository,
         favoritesStore: favoritesStore,

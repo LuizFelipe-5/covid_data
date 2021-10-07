@@ -20,14 +20,14 @@ class DetailsPage extends StatefulWidget {
 
 class _DetailsPageState extends State<DetailsPage>
     with SingleTickerProviderStateMixin {
-  late DetailsController controller;
+  late CountryDetailsController controller;
   late Animation<double> animation;
   late AnimationController animationController;
 
   @override
   void initState() {
     super.initState();
-    controller = GetIt.I.get<DetailsController>();
+    controller = GetIt.I.get<CountryDetailsController>();
     controller.getCountry(widget.country);
     animationController = AnimationController(
       vsync: this,

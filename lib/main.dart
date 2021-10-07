@@ -2,10 +2,13 @@ import 'dart:io';
 
 import 'package:covid_data/app/pages/continents_page/continents_controller.dart';
 import 'package:covid_data/app/pages/continents_page/continents_store.dart';
+import 'package:covid_data/app/pages/continents_page/use_case/get_continents_use_case.dart';
 import 'package:covid_data/app/pages/countries_page/countries_controller.dart';
 import 'package:covid_data/app/pages/countries_page/countries_store.dart';
+import 'package:covid_data/app/pages/countries_page/use_case/search_country_use_case.dart';
 import 'package:covid_data/app/pages/details_page/details_controller.dart';
 import 'package:covid_data/app/pages/details_page/details_store.dart';
+import 'package:covid_data/app/pages/details_page/use_case/get_country_use_case.dart';
 import 'package:covid_data/app/pages/favorites_page/favorites_controller.dart';
 import 'package:covid_data/app/pages/favorites_page/favorites_store.dart';
 import 'package:covid_data/app/pages/splash_screen_page/splash_screen_controller.dart';
@@ -29,19 +32,25 @@ void main() {
   getIt.registerLazySingleton(
       () => ContinentsController(repository: getIt.get(), store: getIt.get()));
   getIt.registerLazySingleton(() => CountryStore());
-  getIt.registerLazySingleton(
-      () => CountryController(countryStore: getIt.get()));
+  getIt.registerFactory(() => GetContinentsUseCase(repository: getIt.get()));
+  getIt.registerFactory(() => SearchCountryUseCase(store: getIt.get()));
+  getIt.registerLazySingleton(() => CountryController(
+        countryStore: getIt.get(),
+        searchCountryUseCase: getIt.get(),
+      ));
   getIt.registerFactory(() => CountryRepository(restClient: getIt.get()));
   getIt.registerLazySingleton(() => FavoritesStore());
   getIt.registerLazySingleton(() => SplashScreenController(
       favoritesStore: getIt.get(), localStorage: getIt.get()));
   getIt.registerFactory(() => FavoritesController(store: getIt.get()));
   getIt.registerLazySingleton(() => DetailsStore());
-  getIt.registerLazySingleton(() => DetailsController(
-        repository: getIt.get(),
+  getIt.registerFactory(() => GetCountryUseCase(repository: getIt.get()));
+  getIt.registerLazySingleton(() => CountryDetailsController(
         detailsStore: getIt.get(),
         favoritesStore: getIt.get(),
         storage: getIt.get(),
+        getCountryUseCase: getIt.get(),
+        isFavoriteUseCase: getIt.get(),
       ));
 
   runApp(const MyApp());

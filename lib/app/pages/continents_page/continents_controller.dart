@@ -11,11 +11,10 @@ class ContinentsController {
   Future<void> getContinents() async {
     store.changeState(AppState.LOADING);
     final continents = await repository.getContinents();
-    if (continents == null) {
-      store.changeState(AppState.ERROR);
-    } else {
+    continents.fold((failure) => store.changeState(AppState.ERROR),
+        (continents) {
       store.setListContinent(continents);
       store.changeState(AppState.SUCCESS);
-    }
+    });
   }
 }

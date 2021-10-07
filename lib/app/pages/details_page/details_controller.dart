@@ -1,6 +1,10 @@
 import 'dart:io';
 
 import 'package:covid_data/app/models/country.dart';
+import 'package:covid_data/app/pages/details_page/use_case/add_to_favorites_use_case.dart';
+import 'package:covid_data/app/pages/details_page/use_case/get_country_use_case.dart';
+import 'package:covid_data/app/pages/details_page/use_case/is_favorite_use_case.dart';
+import 'package:covid_data/app/pages/details_page/use_case/remove_from_favorites_use_case.dart';
 import 'package:covid_data/app/pages/favorites_page/favorites_store.dart';
 import 'package:covid_data/app/repositories/country_repository.dart';
 import 'package:covid_data/app/pages/details_page/details_store.dart';
@@ -9,43 +13,47 @@ import 'package:covid_data/app/utils/local_storage.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as pathProvider;
 
-class DetailsController {
+class CountryDetailsController {
   DetailsStore detailsStore;
-  CountryRepository repository;
   FavoritesStore favoritesStore;
   LocalStorage storage;
+  final GetCountryUseCase _getCountry;
+  final IsCountryFavoriteUseCase _isFavorite;
+  final AddCountryToFavoritesUseCase _addToFavorites;
+  final RemoveCountryFromFavorites _removeFromFavorites;
 
-  DetailsController(
-      {required this.detailsStore,
-      required this.repository,
-      required this.favoritesStore,
-      required this.storage});
+  CountryDetailsController({
+    required this.detailsStore,
+    required this.favoritesStore,
+    required this.storage,
+    required GetCountryUseCase getCountryUseCase,
+    required IsCountryFavoriteUseCase isFavoriteUseCase,
+    required AddCountryToFavoritesUseCase addCountryToFavoritesUseCase,
+    required RemoveCountryFromFavorites removeCountryFromFavorites,
+  })  : _getCountry = getCountryUseCase,
+        _isFavorite = isFavoriteUseCase,
+        _addToFavorites = addCountryToFavoritesUseCase,
+        _removeFromFavorites = removeCountryFromFavorites;
 
   Future<void> getCountry(String countryName) async {
     detailsStore.changeState(AppState.LOADING);
-    final country = await repository.getCountry(countryName);
-    if (country == null) {
-      detailsStore.changeState(AppState.ERROR);
-    } else {
+    final response = await _getCountry.byName(countryName);
+    response.fold((failure) => detailsStore.changeState(AppState.ERROR),
+        (country) {
       detailsStore.setCountry(country);
       detailsStore.changeState(AppState.SUCCESS);
-    }
+    });
   }
 
-  bool isFavorite(Country country) {
-    for (Country favorite in favoritesStore.favorites) {
-      if (favorite.country == country.country) {
-        return true;
-      }
-    }
-    return false;
+  isFavorite(Country country) {
+    _isFavorite.isFavorite(country);
   }
 
   void changeFavoritesList(Country country) {
     if (!isFavorite(country)) {
-      favoritesStore.addToFavorites(country);
+      _addToFavorites.add(country);
     } else {
-      favoritesStore.removeFromFavorites(country);
+      _removeFromFavorites.remove(country);
     }
     saveFavorites();
   }

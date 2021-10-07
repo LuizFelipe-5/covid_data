@@ -35,7 +35,7 @@ class _CountriesPageState extends State<CountriesPage> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
-        onChanged: controller.getCountriesFiltered,
+        onChanged: controller.searchCountry,
         title: 'Covid Data',
         hintText: 'Encontre um país',
       ),

@@ -1,5 +1,8 @@
+import 'package:covid_data/app/core/failure.dart';
 import 'package:covid_data/app/models/country.dart';
+import 'package:covid_data/app/pages/details_page/failures/cant_get_country_failure.dart';
 import 'package:covid_data/app/utils/rest_client.dart';
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
 class CountryRepository {
@@ -19,18 +22,17 @@ class CountryRepository {
   //   return list.map((json) => Country.fromJson(json)).toList();
   // }
 
-  Future<Country?> getCountry(String countryName) async {
+  Future<Either<Failure, Country>> getCountry(String countryName) async {
     try {
       final response =
           await request.get('countries/${countryName.toLowerCase()}');
       if (response.statusCode != 200) {
         throw Exception();
       }
-      final country = response.data;
-      var countryData = Country.fromJson(country);
-      return countryData;
+      final country = Country.fromJson(response.data);
+      return Right(country);
     } catch (e) {
-      return null;
+      return Left(CantGetCountryFailure());
     }
   }
 }
