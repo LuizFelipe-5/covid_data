@@ -8,7 +8,9 @@ import 'package:covid_data/app/pages/countries_page/countries_store.dart';
 import 'package:covid_data/app/pages/countries_page/use_case/search_country_use_case.dart';
 import 'package:covid_data/app/pages/details_page/details_controller.dart';
 import 'package:covid_data/app/pages/details_page/details_store.dart';
+import 'package:covid_data/app/pages/details_page/use_case/add_to_favorites_use_case.dart';
 import 'package:covid_data/app/pages/details_page/use_case/get_country_use_case.dart';
+import 'package:covid_data/app/pages/details_page/use_case/remove_from_favorites_use_case.dart';
 import 'package:covid_data/app/pages/favorites_page/favorites_controller.dart';
 import 'package:covid_data/app/pages/favorites_page/favorites_store.dart';
 import 'package:covid_data/app/pages/splash_screen_page/splash_screen_controller.dart';
@@ -45,12 +47,16 @@ void main() {
   getIt.registerFactory(() => FavoritesController(store: getIt.get()));
   getIt.registerLazySingleton(() => DetailsStore());
   getIt.registerFactory(() => GetCountryUseCase(repository: getIt.get()));
+  getIt.registerFactory(() => AddCountryToFavoritesUseCase(store: getIt.get()));
+  getIt.registerFactory(() => RemoveCountryFromFavorites(store: getIt.get()));
   getIt.registerLazySingleton(() => CountryDetailsController(
         detailsStore: getIt.get(),
         favoritesStore: getIt.get(),
         storage: getIt.get(),
         getCountryUseCase: getIt.get(),
         isFavoriteUseCase: getIt.get(),
+        addCountryToFavoritesUseCase: getIt.get(),
+        removeCountryFromFavorites: getIt.get(),
       ));
 
   runApp(const MyApp());
