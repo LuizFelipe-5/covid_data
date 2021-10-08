@@ -1,10 +1,15 @@
 import 'package:covid_data/app/models/country.dart';
 import 'package:covid_data/app/pages/details_page/details_controller.dart';
 import 'package:covid_data/app/pages/details_page/details_store.dart';
+import 'package:covid_data/app/pages/details_page/use_case/add_to_favorites_use_case.dart';
+import 'package:covid_data/app/pages/details_page/use_case/get_country_use_case.dart';
+import 'package:covid_data/app/pages/details_page/use_case/is_favorite_use_case.dart';
+import 'package:covid_data/app/pages/details_page/use_case/remove_from_favorites_use_case.dart';
 import 'package:covid_data/app/pages/favorites_page/favorites_store.dart';
 import 'package:covid_data/app/repositories/country_repository.dart';
 import 'package:covid_data/app/utils/app_state.dart';
 import 'package:covid_data/app/utils/local_storage.dart';
+import 'package:dartz/dartz.dart';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';
@@ -24,8 +29,12 @@ void main() {
   late FavoritesStore favoritesStore;
   late LocalStorage localStorage;
   late CountryDetailsController detailsController;
+  late AddCountryToFavoritesUseCase addCountryToFavoritesUseCase;
+  late RemoveCountryFromFavorites removeCountryFromFavorites;
+  late GetCountryUseCase getCountryUseCase;
+  late IsCountryFavoriteUseCase isCountryFavoriteUseCase;
 
-  Country country = Country(
+  late Country country = Country(
     country: 'Brazil',
     countryInfo: CountryInfo(flag: ''),
     cases: 0,
@@ -64,11 +73,20 @@ void main() {
     detailsStore = DetailsStore();
     countryRepository = MockCountryRepository();
     favoritesStore = FavoritesStore();
+    addCountryToFavoritesUseCase =
+        AddCountryToFavoritesUseCase(store: favoritesStore);
+    removeCountryFromFavorites =
+        RemoveCountryFromFavorites(store: favoritesStore);
+    getCountryUseCase = GetCountryUseCase(repository: countryRepository);
+    isCountryFavoriteUseCase = IsCountryFavoriteUseCase(store: favoritesStore);
     detailsController = CountryDetailsController(
         detailsStore: detailsStore,
-        repository: countryRepository,
         favoritesStore: favoritesStore,
-        storage: localStorage);
+        storage: localStorage,
+        addCountryToFavoritesUseCase: addCountryToFavoritesUseCase,
+        getCountryUseCase: getCountryUseCase,
+        isFavoriteUseCase: isCountryFavoriteUseCase,
+        removeCountryFromFavorites: removeCountryFromFavorites);
     detailsStore.setCountry(country);
     favoritesStore.setListFavorites(countries);
   });
@@ -80,7 +98,7 @@ void main() {
 
   test('Deveria ser retornado o estado de SUCCESS', () async {
     when(() => countryRepository.getCountry(any()))
-        .thenAnswer((_) async => country3);
+        .thenAnswer((_) async => Right(country3));
     await detailsController.getCountry('Chile');
     expect(detailsStore.state, equals(AppState.SUCCESS));
   });

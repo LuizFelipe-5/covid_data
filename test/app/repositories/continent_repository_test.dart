@@ -1,6 +1,7 @@
 import 'package:covid_data/app/models/continent.dart';
 import 'package:covid_data/app/repositories/continent_repository.dart';
 import 'package:covid_data/app/utils/rest_client.dart';
+import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
@@ -40,7 +41,7 @@ void main() {
 
   test('Deveria retornar uma lista não vazia', () async {
     final listContinents = await continentRepository.getContinents();
-    expect(listContinents?.isNotEmpty, equals(true));
+    expect(Right(listContinents), equals(true));
   });
 
   test('Deveria retornar um erro', () async {
