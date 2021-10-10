@@ -18,7 +18,6 @@ class CountryDetailsController {
   FavoritesStore favoritesStore;
   LocalStorage storage;
   final GetCountryUseCase _getCountry;
-  final IsCountryFavoriteUseCase _isFavorite;
   final AddCountryToFavoritesUseCase _addToFavorites;
   final RemoveCountryFromFavorites _removeFromFavorites;
 
@@ -27,11 +26,9 @@ class CountryDetailsController {
     required this.favoritesStore,
     required this.storage,
     required GetCountryUseCase getCountryUseCase,
-    required IsCountryFavoriteUseCase isFavoriteUseCase,
     required AddCountryToFavoritesUseCase addCountryToFavoritesUseCase,
     required RemoveCountryFromFavorites removeCountryFromFavorites,
   })  : _getCountry = getCountryUseCase,
-        _isFavorite = isFavoriteUseCase,
         _addToFavorites = addCountryToFavoritesUseCase,
         _removeFromFavorites = removeCountryFromFavorites;
 
@@ -45,8 +42,13 @@ class CountryDetailsController {
     });
   }
 
-  isFavorite(Country country) {
-    _isFavorite.isFavorite(country);
+  bool isFavorite(Country country) {
+    for (Country favorite in favoritesStore.favorites) {
+      if (favorite.country == country.country) {
+        return true;
+      }
+    }
+    return false;
   }
 
   void changeFavoritesList(Country country) {

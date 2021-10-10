@@ -36,17 +36,17 @@ void main() {
 
   test('Deveria retornar uma lista do tipo Continent', () async {
     final listContinents = await continentRepository.getContinents();
-    expect(listContinents, isA<List<Continent>?>());
+    expect(listContinents.isRight(), equals(true));
   });
 
   test('Deveria retornar uma lista não vazia', () async {
     final listContinents = await continentRepository.getContinents();
-    expect(Right(listContinents), equals(true));
+    expect(listContinents.length(), isNot(null));
   });
 
   test('Deveria retornar um erro', () async {
     when(() => mockDio.get(any())).thenThrow(Exception());
     final listContinents = await continentRepository.getContinents();
-    expect(listContinents, equals(null));
+    expect(listContinents.isLeft(), equals(true));
   });
 }

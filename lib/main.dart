@@ -10,6 +10,7 @@ import 'package:covid_data/app/pages/details_page/details_controller.dart';
 import 'package:covid_data/app/pages/details_page/details_store.dart';
 import 'package:covid_data/app/pages/details_page/use_case/add_to_favorites_use_case.dart';
 import 'package:covid_data/app/pages/details_page/use_case/get_country_use_case.dart';
+import 'package:covid_data/app/pages/details_page/use_case/is_favorite_use_case.dart';
 import 'package:covid_data/app/pages/details_page/use_case/remove_from_favorites_use_case.dart';
 import 'package:covid_data/app/pages/favorites_page/favorites_controller.dart';
 import 'package:covid_data/app/pages/favorites_page/favorites_store.dart';
@@ -54,7 +55,6 @@ void main() {
         favoritesStore: getIt.get(),
         storage: getIt.get(),
         getCountryUseCase: getIt.get(),
-        isFavoriteUseCase: getIt.get(),
         addCountryToFavoritesUseCase: getIt.get(),
         removeCountryFromFavorites: getIt.get(),
       ));

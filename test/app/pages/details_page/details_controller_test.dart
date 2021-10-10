@@ -1,6 +1,7 @@
 import 'package:covid_data/app/models/country.dart';
 import 'package:covid_data/app/pages/details_page/details_controller.dart';
 import 'package:covid_data/app/pages/details_page/details_store.dart';
+import 'package:covid_data/app/pages/details_page/failures/cant_get_country_failure.dart';
 import 'package:covid_data/app/pages/details_page/use_case/add_to_favorites_use_case.dart';
 import 'package:covid_data/app/pages/details_page/use_case/get_country_use_case.dart';
 import 'package:covid_data/app/pages/details_page/use_case/is_favorite_use_case.dart';
@@ -32,7 +33,6 @@ void main() {
   late AddCountryToFavoritesUseCase addCountryToFavoritesUseCase;
   late RemoveCountryFromFavorites removeCountryFromFavorites;
   late GetCountryUseCase getCountryUseCase;
-  late IsCountryFavoriteUseCase isCountryFavoriteUseCase;
 
   late Country country = Country(
     country: 'Brazil',
@@ -78,14 +78,12 @@ void main() {
     removeCountryFromFavorites =
         RemoveCountryFromFavorites(store: favoritesStore);
     getCountryUseCase = GetCountryUseCase(repository: countryRepository);
-    isCountryFavoriteUseCase = IsCountryFavoriteUseCase(store: favoritesStore);
     detailsController = CountryDetailsController(
         detailsStore: detailsStore,
         favoritesStore: favoritesStore,
         storage: localStorage,
         addCountryToFavoritesUseCase: addCountryToFavoritesUseCase,
         getCountryUseCase: getCountryUseCase,
-        isFavoriteUseCase: isCountryFavoriteUseCase,
         removeCountryFromFavorites: removeCountryFromFavorites);
     detailsStore.setCountry(country);
     favoritesStore.setListFavorites(countries);
@@ -104,6 +102,8 @@ void main() {
   });
 
   test('Deveria ser retornado o estado de ERROR', () async {
+    when(() => countryRepository.getCountry(any()))
+        .thenAnswer((_) async => Left(CantGetCountryFailure()));
     await detailsController.getCountry('X');
     expect(detailsStore.state, equals(AppState.ERROR));
   });
